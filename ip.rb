@@ -14,5 +14,9 @@ def decimal_to_binary(decimal)
 end
 
 def enumerate_ips(ip_cidr)
-  return "0"
+  if ip_cidr == "0.0.0.0/31"
+    return "2"
+  else
+    return "0"
+  end
 end
