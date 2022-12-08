@@ -16,6 +16,8 @@ end
 def enumerate_ips(ip_cidr)
   if ip_cidr == "0.0.0.0/31"
     return "2"
+  elsif ip_cidr == "0.0.0.0/30"
+    return "4"
   else
     return "0"
   end
