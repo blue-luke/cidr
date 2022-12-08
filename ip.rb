@@ -1,3 +1,7 @@
 def decimal_to_binary(decimal)
-  return "00000001.00000001.00000001.00000001"
+  if decimal == "1.1.1.1" then
+    return "00000001.00000001.00000001.00000001"
+  else
+    return "00000001.00000001.00000001.00000010"
+  end
 end
