@@ -19,5 +19,7 @@ describe 'enumerate_ips' do
   it 'returns 2 when passed "0.0.0.0/31"' do
     expect(enumerate_ips("0.0.0.0/31")).to eq("2")
   end
+  it 'returns 4 when passed "0.0.0.0/30"' do
+    expect(enumerate_ips("0.0.0.0/30")).to eq("4")
+  end
 end
-"0.0.0.0/31"
