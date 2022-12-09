@@ -15,7 +15,7 @@ end
 
 def enumerate_ips(ip_cidr)
 
-  ip_cidr_array = ip_cidr.split("/")
+  print ip_cidr_array = ip_cidr.split("/")
   ip_as_string = decimal_to_binary(ip_cidr_array[0]).tr('.','')
 
   network_bits = ip_cidr_array[1]
@@ -23,16 +23,5 @@ def enumerate_ips(ip_cidr)
   host_bits = ip_as_string[network_bits.to_i..-1]
   binary_places = host_bits.length
   (2 ** binary_places).to_s
-  # host_bits.to_i(2)
 
-  #"((String1))".tr('()', '')
-  #.split(".").join(".")#.flatten.to_s
-
-  # if ip_cidr == "0.0.0.0/31"
-  #   return "2"
-  # elsif ip_cidr == "0.0.0.0/30"
-  #   return "4"
-  # else
-  #   return "0"
-  # end
 end

@@ -12,7 +12,7 @@ describe 'decimal_to_binary' do
   end
 end
 
-describe 'enumerate_ips' do
+describe 'enumerate_ips in 4th octet' do
   it 'returns 0 when passed "0.0.0.0/32"' do
     expect(enumerate_ips("0.0.0.0/32")).to eq("1")
   end
@@ -21,5 +21,17 @@ describe 'enumerate_ips' do
   end
   it 'returns 4 when passed "0.0.0.0/30"' do
     expect(enumerate_ips("0.0.0.0/30")).to eq("4")
+  end
+end
+
+describe 'enumerate_ips in other octets, simple' do
+  it 'returns 256 when passed "0.0.0.0/24"' do
+    expect(enumerate_ips("0.0.0.0/24")).to eq("256")
+  end
+  it 'returns 2 when passed "0.0.0.0/16"' do
+    expect(enumerate_ips("0.0.0.0/16")).to eq("65536")
+  end
+  it 'returns 4 when passed "0.0.0.0/8"' do
+    expect(enumerate_ips("0.0.0.0/8")).to eq("16777216")
   end
 end
