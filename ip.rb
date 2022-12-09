@@ -42,3 +42,9 @@ def enumerate_ips(ip_cidr)
   (2 ** binary_places).to_s
 
 end
+
+def find_lower_bound(ip_cidr)
+  if ip_cidr == "0.0.0.0/24"
+    return "0.0.0.0"
+  end
+end
