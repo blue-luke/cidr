@@ -101,12 +101,3 @@ describe 'binary_to_decimal' do
     expect(binary_to_decimal("00000001.00000001.00000001.00000011")).to eq("1.1.1.3")
   end
 end
-
-describe 'prevents entry of invalid ips and cidrs' do
-  it 'rejects invalid cidrs' do
-    expect(explain_ip("0.0.1.0/33")).to eq("Invalid CIDR")
-  end
-  it 'rejects invalid cidrs' do
-    expect(explain_ip("0.0.1.0/0")).to eq("Invalid CIDR")
-  end
-end

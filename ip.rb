@@ -73,12 +73,7 @@ def find_upper_bound(ip_cidr)
 end
 
 def explain_ip(ip_cidr)
-  ip_cidr_array = ip_cidr.split("/")
-  if ip_cidr_array[1].to_i < 1 || ip_cidr_array[1].to_i > 32
-    return "Invalid CIDR"
-  else
     print "Lower bound of ip range is " + find_lower_bound(ip_cidr) + "\n"
     print "Upper bound of ip range is " + find_upper_bound(ip_cidr) + "\n"
     print "Number of ips available is " + enumerate_ips(ip_cidr)
-  end
 end
