@@ -44,9 +44,6 @@ def enumerate_ips(ip_cidr)
 end
 
 def find_lower_bound(ip_cidr)
-  if ip_cidr == "0.0.0.0/24"
-    return "0.0.0.0"
-  elsif ip_cidr == "0.0.1.0/24"
-    return "0.0.1.0"
-  end
+  ip_cidr_array = ip_cidr.split("/")
+  return ip_cidr_array[0]
 end
