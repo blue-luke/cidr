@@ -78,6 +78,35 @@ describe 'calculates lower range of ips' do
   end
 end
 
+describe 'calculates upper range of ips' do
+  it 'returns "Upper bound is 0.0.0.255" when passed "0.0.0.0/24"' do
+    expect(find_upper_bound("0.0.0.0/24")).to eq("0.0.0.255")
+  end
+  it 'returns "Upper bound is 0.0.1.255" when passed "0.0.1.0/24"' do
+    expect(find_upper_bound("0.0.1.0/24")).to eq("0.0.1.255")
+  end
+  it 'returns "Uper bound is 0.255.255.255" when passed "0.0.1.0/8"' do
+    expect(find_upper_bound("0.0.1.0/8")).to eq("0.255.255.255")
+  end
+end
+
+describe 'binary_to_decimal' do
+  it 'converts a "00000001.00000001.00000001.00000001" to "1.1.1.1"' do 
+    expect(binary_to_decimal("00000001.00000001.00000001.00000001")).to eq("1.1.1.1")
+  end
+  it 'converts a "00000001.00000001.00000001.00000010" to "1.1.1.2"' do 
+    expect(binary_to_decimal("00000001.00000001.00000001.00000010")).to eq("1.1.1.2")
+  end
+  it 'converts a "00000001.00000001.00000001.00000011" to "1.1.1.3"' do 
+    expect(binary_to_decimal("00000001.00000001.00000001.00000011")).to eq("1.1.1.3")
+  end
+end
+
 describe 'prevents entry of invalid ips and cidrs' do
-   # To do
+  it 'rejects invalid cidrs' do
+    expect(explain_ip("0.0.1.0/33")).to eq("Invalid CIDR")
+  end
+  it 'rejects invalid cidrs' do
+    expect(explain_ip("0.0.1.0/0")).to eq("Invalid CIDR")
+  end
 end
