@@ -52,15 +52,29 @@ def enumerate_ips(ip_cidr)
 end
 
 def find_boundary_condition(ip_cidr, upper_or_lower)
+
+  # Get decimal ip
   ip_cidr_array = ip_cidr.split("/")
+
+  # Convert to binary string
   ip_as_string = decimal_to_binary(ip_cidr_array[0]).tr('.','')
+
+  # Find network portion of binary string
   network_bits = ip_cidr_array[1]
   network_address_binary = ip_as_string[0...network_bits.to_i]
+
+  # Find how many 1s or 0s need to be added to make upper or lower bound
   zeroes = (32 - network_address_binary.length)
+
+  # Add 1s or 0s
   zeroes.times do
     network_address_binary << (upper_or_lower)
   end
+
+  # Convert string to octets
   network_address_binary_formatted = network_address_binary.scan(/.{8}|.+/).join(".")
+
+  # Convert binary to decimal
   binary_to_decimal(network_address_binary_formatted)
 end
 
