@@ -42,8 +42,3 @@ def enumerate_ips(ip_cidr)
   (2 ** binary_places).to_s
 
 end
-
-def find_lower_bound(ip_cidr)
-  ip_cidr_array = ip_cidr.split("/")
-  return ip_cidr_array[0]
-end
