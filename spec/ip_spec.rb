@@ -13,7 +13,7 @@ describe 'decimal_to_binary' do
 end
 
 describe 'enumerate_ips in 4th octet' do
-  it 'returns 0 when passed "0.0.0.0/32"' do
+  it 'returns 1 when passed "0.0.0.0/32"' do
     expect(enumerate_ips("0.0.0.0/32")).to eq("1")
   end
   it 'returns 2 when passed "0.0.0.0/31"' do
@@ -24,14 +24,48 @@ describe 'enumerate_ips in 4th octet' do
   end
 end
 
-describe 'enumerate_ips in other octets, simple' do
+describe 'enumerate_ips in other octets, simple ip simple cidr' do
   it 'returns 256 when passed "0.0.0.0/24"' do
     expect(enumerate_ips("0.0.0.0/24")).to eq("256")
   end
-  it 'returns 2 when passed "0.0.0.0/16"' do
+  it 'returns 65536 when passed "0.0.0.0/16"' do
     expect(enumerate_ips("0.0.0.0/16")).to eq("65536")
   end
-  it 'returns 4 when passed "0.0.0.0/8"' do
+  it 'returns 16777216 when passed "0.0.0.0/8"' do
     expect(enumerate_ips("0.0.0.0/8")).to eq("16777216")
   end
+end
+
+describe 'enumerate_ips in other octets, private ipv4 addresses' do
+  it 'returns 16777216 when passed "10.0.0.0/8"' do
+    expect(enumerate_ips("10.0.0.0/8")).to eq("16777216")
+  end
+  it 'returns 1048576 when passed "172.16.0.0/12"' do
+    expect(enumerate_ips("172.16.0.0/12")).to eq("1048576")
+  end
+  it 'returns 65536 when passed "192.168.0.0/16"' do
+    expect(enumerate_ips("192.168.0.0/16")).to eq("65536")
+  end
+  it 'returns 65536 when passed "127.0.0.0/8"' do
+    expect(enumerate_ips("127.0.0.0/8")).to eq("16777216")
+  end
+end
+
+describe 'enumerate_ips in other octets, complex' do
+  it 'returns 32 when passed "0.0.0.0/27"' do
+    expect(enumerate_ips("0.0.0.0/27")).to eq("32")
+  end
+  it 'returns 256 when passed "200.100.10.0/24"' do
+    expect(enumerate_ips("200.100.10.0/24")).to eq("256")
+  end
+  it 'returns 128 when passed "200.100.10.0/25"' do
+    expect(enumerate_ips("200.100.10.0/25")).to eq("128")
+  end
+  it 'returns 128 when passed "200.100.10.128/25"' do
+    expect(enumerate_ips("200.100.10.128/25")).to eq("128")
+  end
+end
+
+describe 'prevents entry of invalid ips and cidrs' do
+   # To do
 end
