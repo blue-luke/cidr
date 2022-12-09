@@ -70,6 +70,9 @@ describe 'calculates lower range of ips' do
   it 'returns "Lower bound is 0.0.0.0" when passed "0.0.0.0/24"' do
     expect(find_lower_bound("0.0.0.0/24")).to eq("0.0.0.0")
   end
+  it 'returns "Lower bound is 0.0.1.0" when passed "0.0.1.0/24"' do
+    expect(find_lower_bound("0.0.1.0/24")).to eq("0.0.1.0")
+  end
 end
 
 describe 'prevents entry of invalid ips and cidrs' do
