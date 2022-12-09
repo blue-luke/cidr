@@ -2,5 +2,5 @@
 
 while true; do
   rspec
-  sleep 5;
+  sleep 2;
 done
