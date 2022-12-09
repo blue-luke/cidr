@@ -101,3 +101,15 @@ describe 'binary_to_decimal' do
     expect(binary_to_decimal("00000001.00000001.00000001.00000011")).to eq("1.1.1.3")
   end
 end
+
+describe 'rejects invalid ips' do
+  it 'rejects 256.0.0.0/8' do 
+    expect(validate_ip("256.0.0.0/8")).to eq("Invalid ip")
+  end
+  it 'rejects 0.266.0.0/8' do 
+    expect(explain_ip("0.266.0.0/8")).to eq("Invalid ip")
+  end
+  it 'rejects 0.4000.0.0/8' do 
+    expect(explain_ip("0.4000.0.0/8")).to eq("Invalid ip")
+  end
+end

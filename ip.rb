@@ -87,7 +87,21 @@ def find_upper_bound(ip_cidr)
 end
 
 def explain_ip(ip_cidr)
+    if validate_ip(ip_cidr) == "Invalid ip"
+      return "Invalid ip"
+    end
     print "Lower bound of ip range is " + find_lower_bound(ip_cidr) + "\n"
     print "Upper bound of ip range is " + find_upper_bound(ip_cidr) + "\n"
     print "Number of ips available is " + enumerate_ips(ip_cidr)
+end
+
+def validate_ip(ip_cidr)
+  ip_cidr_array = ip_cidr.split("/")
+  ip_array = ip_cidr_array[0]
+  octets = ip_array.split(".")
+  octets.each do |n|
+    if n.to_i < 0 || n.to_i > 255
+      return "Invalid ip"
+    end
+  end
 end
