@@ -113,3 +113,12 @@ describe 'rejects invalid ips' do
     expect(explain_ip("0.4000.0.0/8")).to eq("Invalid ip")
   end
 end
+
+describe 'calculates binary subnetworks' do
+  it 'divides "10.100.0.0/16" into "10.100.0.0/17 to 10.100.127.255/17" and "10.100.128.0/17 to 10.100.255.255/17"' do 
+    expect(find_binary_subnetworks("10.100.0.0/16")).to eq("10.100.0.0/17 to 10.100.127.255/17 and 10.100.128.0/17 to 10.100.255.255/17")
+  end
+  it 'divides "200.100.10.0/24" into "200.100.10.0/25 to 200.100.10.127/25" and "200.100.10.128/25 to 200.100.10.255/25"' do 
+    expect(find_binary_subnetworks("200.100.10.0/24")).to eq("200.100.10.0/25 to 200.100.10.127/25 and 200.100.10.128/25 to 200.100.10.255/25")
+  end
+end
