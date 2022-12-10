@@ -94,9 +94,6 @@ def find_binary_subnetworks(ip_cidr)
 
   additional_digits.times do
     network_address_binary_1 << ("0")
-  end
-
-  additional_digits.times do
     network_address_binary_2 << ("0")
   end
 
