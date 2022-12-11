@@ -8,4 +8,6 @@ To carry out tests: $ rspec
 
 To repeat rspec every 2s: $ ./rspec.sh 
 
-To interact with code, clone the repo locally: $ irb -r ./ip.rb, then carry out commands like # explain_ip("200.100.10.128/25").
+To interact with code, navigate to root directory: $ irb -r ./ip.rb, then carry out commands like # explain_ip("200.100.10.128/25").
+
+See spec/ip_spec.rb for tests and sample commands
